@@ -47,9 +47,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {
             placemarks, error in
                 
-                if error != nil && placemarks.count > 0 {
+                if error == nil && placemarks.count > 0 {
                     self.placeMark = placemarks.last as? CLPlacemark
-                    self.adressLabel.text = "\(self.placeMark?.country)"
+                    self.adressLabel.text = "\(self.placeMark!.thoroughfare)\n\(self.placeMark!.postalCode) \(self.placeMark!.locality)\n\(self.placeMark!.country)"
                     self.manager.stopUpdatingLocation()
                     self.button.enabled = true
                 }
